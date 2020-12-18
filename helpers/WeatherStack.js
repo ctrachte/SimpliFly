@@ -10,7 +10,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
     // xhrOriginWeatherStack.withCredentials = true;
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log("Origin weatherstack res:"this.responseText);
+            console.log("Origin weatherstack res:", this.responseText);
         }
     });
     xhrOriginWeatherStack.open("GET", queryStringOrigin);
