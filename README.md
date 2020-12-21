@@ -18,7 +18,7 @@ A progressive web app to show all flights on a certain date, origin and destinat
 
 SimpliFly as envisioned will get flights between two destinations on a particular day and give a brief preview of the current weather in those two locations.  It exists as a project for teaching async that could become more.
 
-![Original XD mockup of interface](<iframe width="1280" height="896" src="https://xd.adobe.com/embed/f24608e4-c4ce-4df1-bd4c-697f6df3e1f9-a715/" frameborder="0" allowfullscreen></iframe>)
+![Original XD mockup of interface](https://github.com/ctrachte/SimpliFly/blob/main/assets/images/interface.png?raw=true)
 
 SimpliFly is powered by [Skyscanner](https://rapidapi.com/skyscanner/api/skyscanner-flight-search) and [Weatherstack](https://weatherstack.com/)
 
