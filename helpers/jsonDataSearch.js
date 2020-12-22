@@ -61,6 +61,7 @@ function OriginHighlights () {
   });
 
   Origin.addEventListener("click", function(e){
+    originData = airportData[e.target.value];
     document.getElementById("Origin").value = airportData[e.target.value].city;
     document.querySelector('.OriginLocations').style.display = 'none';
   });
@@ -78,6 +79,7 @@ function DestinationHighlights () {
   });
 
   Destination.addEventListener("click", function(e){
+    destinationData = airportData[e.target.value];
     document.getElementById("Destination").value = airportData[e.target.value].city;
     document.querySelector('.DestinationLocations').style.display = 'none';
   });
