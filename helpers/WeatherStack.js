@@ -2,10 +2,10 @@
 document.getElementById("findFlights").addEventListener('click', function () {
     // origin location weather call
     const data = null;
-
-    const originLocation = document.getElementById("Origin").value || "New York, NY";
+    // origin location weather call, or a random index from the airportData
+    const originLocation = originData || airportData[ Math.floor(Math.random() * Math.floor(300))];
     const xhrOriginWeatherStack = new XMLHttpRequest();
-    let queryStringOrigin = "http://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation;
+    let queryStringOrigin = "http://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation.city + ", " + originLocation.state;
     // xhrOriginWeatherStack.withCredentials = true;
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
@@ -16,10 +16,10 @@ document.getElementById("findFlights").addEventListener('click', function () {
     // xhrOriginWeatherStack.setRequestHeader("access_key", WeatherstackKey);
     xhrOriginWeatherStack.send(data);
 
-    // destination location weather call
-    const destinationLocation = document.getElementById("Destination").value || "Portland, OR";
+    // destination location weather call, or a random index from the airportData
+    const destinationLocation = destinationData || airportData[ Math.floor(Math.random() * Math.floor(300))];
     const xhrDestinationWeatherStack = new XMLHttpRequest();
-    let queryStringDestination = "http://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + destinationLocation;
+    let queryStringDestination = "http://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + destinationLocation.city + ", " + destinationLocation.state;
         // xhrDestinationWeatherStack.withCredentials = true;
         xhrDestinationWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
@@ -29,4 +29,5 @@ document.getElementById("findFlights").addEventListener('click', function () {
     xhrDestinationWeatherStack.open("GET", queryStringDestination);
     // xhrDestinationWeatherStack.setRequestHeader("access_key", WeatherstackKey);
     xhrDestinationWeatherStack.send(data);
+    // console.log(destinationData, originData)
 });
