@@ -1,3 +1,5 @@
+let originData, destinationData;
+
 document.getElementById('Destination').addEventListener("keyup", function (e) {
     let searchField = this.value;
     if (searchField === '') {
@@ -8,10 +10,9 @@ document.getElementById('Destination').addEventListener("keyup", function (e) {
     let regex = new RegExp(searchField, "i");
     let output = '<ul class="list-group list-group-flush" id="DestinationList">';
     let count = 1;
-    console.log(regex)
     $.each(airportData, function(key, val){
         if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1)) {
-          output += '<li class="list-group-item">' + val.code + " - " + val.name +  '</li>'
+          output += `<li class="list-group-item" value="${key}"> ${val.code} - ${val.name} - ${val.city}, ${val.state}</li>`;
           if(count%2 == 0){
           }
           count++;
@@ -36,7 +37,7 @@ document.getElementById('Origin').addEventListener("keyup", function (e) {
     console.log(regex)
     $.each(airportData, function(key, val){
         if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1)) {
-          output += '<li class="list-group-item">' + val.code + " - " + val.name +  '</li>'
+          output += `<li class="list-group-item" value="${key}"> ${val.code} - ${val.name} - ${val.city}, ${val.state}</li>`;
           if(count%2 == 0){
           }
           count++;
@@ -60,7 +61,7 @@ function OriginHighlights () {
   });
 
   Origin.addEventListener("click", function(e){
-    document.getElementById("Origin").value = e.target.innerHTML;
+    document.getElementById("Origin").value = airportData[e.target.value].city;
     document.querySelector('.OriginLocations').style.display = 'none';
   });
 }
@@ -77,7 +78,7 @@ function DestinationHighlights () {
   });
 
   Destination.addEventListener("click", function(e){
-    document.getElementById("Destination").value = e.target.innerHTML;
+    document.getElementById("Destination").value = airportData[e.target.value].city;
     document.querySelector('.DestinationLocations').style.display = 'none';
   });
 }
