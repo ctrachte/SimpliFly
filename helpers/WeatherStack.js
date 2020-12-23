@@ -9,7 +9,9 @@ document.getElementById("findFlights").addEventListener('click', function () {
     // xhrOriginWeatherStack.withCredentials = true;
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log("Origin weatherstack res:", this.responseText);
+            let response = JSON.parse(this.responseText);
+            console.log("Origin weatherstack res:", response);
+            document.getElementById('originWeatherIcon').setAttribute('src', response.current.weather_icons);
         }
     });
     xhrOriginWeatherStack.open("GET", queryStringOrigin);
@@ -23,7 +25,9 @@ document.getElementById("findFlights").addEventListener('click', function () {
         // xhrDestinationWeatherStack.withCredentials = true;
         xhrDestinationWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log("Destination weatherstack res:", this.responseText);
+            let response = JSON.parse(this.responseText);
+            console.log("Destination weatherstack res:", response);
+            document.getElementById('destinationWeatherIcon').setAttribute('src', response.current.weather_icons);
         }
     });
     xhrDestinationWeatherStack.open("GET", queryStringDestination);
