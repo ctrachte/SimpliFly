@@ -12,8 +12,9 @@ document.getElementById("findFlights").addEventListener('click', function () {
             let response = JSON.parse(this.responseText);
             console.log("Origin weatherstack res:", response);
             document.getElementById('originWeatherIcon').setAttribute('src', response.current.weather_icons[0]);
+            document.getElementById('originWeatherIcon').setAttribute('alt', response.current.weather_descriptions[0]);
             document.getElementById('originWeatherDesc').innerHTML = response.current.weather_descriptions[0];
-            document.getElementById('originWeatherTemp').innerHTML = response.current.temperature + "C";
+            document.getElementById('originWeatherTemp').innerHTML = response.current.temperature + "&#176;" + "C";
             document.getElementById('originWeatherCity').innerHTML = response.location.name + ", " + response.location.region;
         }
     });
@@ -31,8 +32,9 @@ document.getElementById("findFlights").addEventListener('click', function () {
             let response = JSON.parse(this.responseText);
             console.log("Destination weatherstack res:", response);
             document.getElementById('destWeatherIcon').setAttribute('src', response.current.weather_icons[0]);
+            document.getElementById('destWeatherIcon').setAttribute('alt', response.current.weather_descriptions[0]);
             document.getElementById('destWeatherDesc').innerHTML = response.current.weather_descriptions[0];
-            document.getElementById('destWeatherTemp').innerHTML = response.current.temperature + "C";
+            document.getElementById('destWeatherTemp').innerHTML = response.current.temperature + "&#176;" +  "C";
             document.getElementById('destWeatherCity').innerHTML = response.location.name + ", " + response.location.region;
         }
     });
