@@ -20,7 +20,7 @@ SimpliFly as envisioned will get flights between two destinations on a particula
 
 ![Original XD mockup of interface](https://github.com/ctrachte/SimpliFly/blob/README/assets/images/interface.png?raw=true)
 
-SimpliFly is powered by [Skyscanner](https://rapidapi.com/skyscanner/api/skyscanner-flight-search) and [Weatherstack](https://weatherstack.com/)
+SimpliFly is powered by [Skyscanner](https://rapidapi.com/skyscanner/api/skyscanner-flight-search) and [National Weather Service](https://www.weather.gov/)
 
 ### Dependencies
 
