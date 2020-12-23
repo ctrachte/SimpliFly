@@ -5,17 +5,25 @@ document.getElementById("findFlights").addEventListener('click', function () {
     // origin location weather call, or a random index from the airportData
     const originLocation = originData || airportData[Math.floor(Math.random() * Math.floor(300))];
     const xhrOriginWeatherStack = new XMLHttpRequest();
-    let queryStringOrigin = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation.city + ", " + originLocation.state;
+
+    //let queryStringOrigin = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation.city + ", " + originLocation.state;
+    let queryStringOrigin = "https://forecast.weather.gov/MapClick.php?lat=" + originLocation.lat + "&lon=" + originLocation.lon + "&unit=0&lg=english&FcstType=dwml";
     // xhrOriginWeatherStack.withCredentials = true;
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            let response = JSON.parse(this.responseText);
-            // console.log("Origin weatherstack res:", response);
-            document.getElementById('originWeatherIcon').setAttribute('src', response.current.weather_icons[0]);
-            document.getElementById('originWeatherIcon').setAttribute('alt', response.current.weather_descriptions[0]);
-            document.getElementById('originWeatherDesc').innerHTML = "Currently: " + response.current.weather_descriptions[0];
-            document.getElementById('originWeatherTemp').innerHTML = response.current.temperature + "&#176;" + "C";
-            document.getElementById('originWeatherCity').innerHTML = response.location.name + ", " + response.location.region;
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
+            let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
+            currentObservation = currentObservation.getElementsByTagName('parameters')[0];
+            let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
+            let currentCondIcon = currentObservation.getElementsByTagName('conditions-icon')[0].getElementsByTagName('icon-link')[0].innerHTML;
+            let currentCondDesc = currentObservation.getElementsByTagName('weather')[0].getElementsByTagName('weather-conditions')[0].getAttribute('weather-summary');
+
+            document.getElementById('originWeatherIcon').setAttribute('alt', currentCondDesc);
+            document.getElementById('originWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+            document.getElementById('originWeatherIcon').setAttribute('src', currentCondIcon);
+            document.getElementById('originWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            document.getElementById('originWeatherCity').innerHTML = originLocation.city + ", " + originLocation.state; // + ", " + originLocation.country;
         }
     });
     xhrOriginWeatherStack.open("GET", queryStringOrigin);
@@ -25,17 +33,28 @@ document.getElementById("findFlights").addEventListener('click', function () {
     // destination location weather call, or a random index from the airportData
     const destinationLocation = destinationData || airportData[Math.floor(Math.random() * Math.floor(300))];
     const xhrDestinationWeatherStack = new XMLHttpRequest();
-    let queryStringDestination = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + destinationLocation.city + ", " + destinationLocation.state;
+
+    destinationLocation.lat;
+    destinationLocation.lon;
+
+    //let queryStringDestination = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + destinationLocation.city + ", " + destinationLocation.state;
+    let queryStringDestination = "https://forecast.weather.gov/MapClick.php?lat=" + destinationLocation.lat + "&lon=" + destinationLocation.lon + "&unit=0&lg=english&FcstType=dwml";
     // xhrDestinationWeatherStack.withCredentials = true;
     xhrDestinationWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            let response = JSON.parse(this.responseText);
-            // console.log("Destination weatherstack res:", response);
-            document.getElementById('destWeatherIcon').setAttribute('src', response.current.weather_icons[0]);
-            document.getElementById('destWeatherIcon').setAttribute('alt', response.current.weather_descriptions[0]);
-            document.getElementById('destWeatherDesc').innerHTML = "Currently: " + response.current.weather_descriptions[0];
-            document.getElementById('destWeatherTemp').innerHTML = response.current.temperature + "&#176;" +  "C";
-            document.getElementById('destWeatherCity').innerHTML = response.location.name + ", " + response.location.region;
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
+            let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
+            currentObservation = currentObservation.getElementsByTagName('parameters')[0];
+            let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
+            let currentCondIcon = currentObservation.getElementsByTagName('conditions-icon')[0].getElementsByTagName('icon-link')[0].innerHTML;
+            let currentCondDesc = currentObservation.getElementsByTagName('weather')[0].getElementsByTagName('weather-conditions')[0].getAttribute('weather-summary');
+
+            document.getElementById('destWeatherIcon').setAttribute('alt', currentCondDesc);
+            document.getElementById('destWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+            document.getElementById('destWeatherIcon').setAttribute('src', currentCondIcon);
+            document.getElementById('destWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            document.getElementById('destWeatherCity').innerHTML = destinationLocation.city + ", " + destinationLocation.state; // + ", " + destinationLocation.country;
         }
     });
     xhrDestinationWeatherStack.open("GET", queryStringDestination);
