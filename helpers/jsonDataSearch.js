@@ -11,8 +11,8 @@ document.getElementById('Destination').addEventListener("keyup", function (e) {
     let output = '<ul class="list-group list-group-flush" id="DestinationList">';
     let count = 1;
     $.each(airportData, function(key, val){
-        if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1) || (val.state.search(regex) != -1)) {
-          if (val.country === "United States") {
+      if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1) || (val.state ? val.state.search(regex) != -1 : false)) {
+        if (val.country === "United States") {
             output += `<li class="list-group-item" value="${key}"> ${val.code} - ${val.name} - ${val.city}, ${val.state}</li>`;
             count++;
           }
@@ -35,7 +35,7 @@ document.getElementById('Origin').addEventListener("keyup", function (e) {
     let output = '<ul class="list-group list-group-flush" id="OriginList">';
     let count = 1;
     $.each(airportData, function(key, val){
-        if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1) || (val.state.search(regex) != -1)) {
+        if ((val.city.search(regex) != -1) || (val.code.search(regex) != -1) || (val.state ? val.state.search(regex) != -1 : false)) {
           if (val.country === "United States") {
             output += `<li class="list-group-item" value="${key}"> ${val.code} - ${val.name} - ${val.city}, ${val.state}</li>`;
             count++;
