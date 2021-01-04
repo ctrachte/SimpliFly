@@ -8,7 +8,6 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
     //let queryStringOrigin = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation.city + ", " + originLocation.state;
     let queryStringOrigin = "https://forecast.weather.gov/MapClick.php?lat=" + originLocation.lat + "&lon=" + originLocation.lon + "&unit=0&lg=english&FcstType=dwml";
-    console.log(queryStringOrigin);
     //A point forecast is unavailable for the requested location
     //https://forecast.weather.gov/MapClick.php?lat=47.1715&lon=8.51622&unit=0&lg=english&FcstType=dwml
     // xhrOriginWeatherStack.withCredentials = true;
