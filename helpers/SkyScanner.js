@@ -1,8 +1,6 @@
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
-    // origin location call
     const data = null;
-    // origin location call
     const originAirportCode = (originData || airportData[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const destAirportCode = (destinationData || airportData[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = document.querySelectorAll('[type="date"]')[0].value; // modify this later to be more specific to the HTML element.
@@ -16,8 +14,8 @@ document.getElementById("findFlights").addEventListener('click', function () {
             console.log(this.responseText);
         }
     });
-    xhrSkyScannerRequest.open("GET", SkyScannerHost);
+    xhrSkyScannerRequest.open("GET", "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString);
     xhrSkyScannerRequest.setRequestHeader("x-rapidapi-key", SkyScannerKey);
-    xhrSkyScannerRequest.setRequestHeader("x-rapidapi-host", SkyScannerHost + queryString);
+    xhrSkyScannerRequest.setRequestHeader("x-rapidapi-host", SkyScannerHost);
     xhrSkyScannerRequest.send(data);
 });
