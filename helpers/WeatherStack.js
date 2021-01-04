@@ -8,10 +8,26 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
     //let queryStringOrigin = "https://api.weatherstack.com/current" + "?access_key=" + WeatherstackKey + "&query=" + originLocation.city + ", " + originLocation.state;
     let queryStringOrigin = "https://forecast.weather.gov/MapClick.php?lat=" + originLocation.lat + "&lon=" + originLocation.lon + "&unit=0&lg=english&FcstType=dwml";
+    //A point forecast is unavailable for the requested location
+    //https://forecast.weather.gov/MapClick.php?lat=47.1715&lon=8.51622&unit=0&lg=english&FcstType=dwml
     // xhrOriginWeatherStack.withCredentials = true;
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             let parser = new DOMParser();
+
+            document.getElementById('originWeatherCity').innerHTML = originLocation.city + ", " + originLocation.state; // + ", " + originLocation.country;
+
+            //<title>Forecast Error</title><meta name="title" content="Forecast Error" />
+            if(this.responseText.includes("<title>Forecast Error</title>"))
+            {
+                //Error with forecast
+                document.getElementById('originWeatherIcon').setAttribute('alt', '');
+                document.getElementById('originWeatherDesc').innerHTML = '';
+                document.getElementById('originWeatherIcon').setAttribute('src', '');
+                document.getElementById('originWeatherTemp').innerHTML = '';
+                return;
+            }
+
             let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
@@ -21,9 +37,15 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
             document.getElementById('originWeatherIcon').setAttribute('alt', currentCondDesc);
             document.getElementById('originWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
-            document.getElementById('originWeatherIcon').setAttribute('src', currentCondIcon);
+            if(!currentCondIcon || currentCondIcon == 'NULL')
+            {
+                document.getElementById('originWeatherIcon').setAttribute('src', '');
+            }
+            else
+            {
+                document.getElementById('originWeatherIcon').setAttribute('src', currentCondIcon);
+            }
             document.getElementById('originWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
-            document.getElementById('originWeatherCity').innerHTML = originLocation.city + ", " + originLocation.state; // + ", " + originLocation.country;
         }
     });
     xhrOriginWeatherStack.open("GET", queryStringOrigin);
@@ -43,6 +65,20 @@ document.getElementById("findFlights").addEventListener('click', function () {
     xhrDestinationWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             let parser = new DOMParser();
+
+            document.getElementById('destWeatherCity').innerHTML = destinationLocation.city + ", " + destinationLocation.state; // + ", " + destinationLocation.country;
+
+            //<title>Forecast Error</title><meta name="title" content="Forecast Error" />
+            if(this.responseText.includes("<title>Forecast Error</title>"))
+            {
+                //Error with forecast
+                document.getElementById('destWeatherIcon').setAttribute('alt', '');
+                document.getElementById('destWeatherDesc').innerHTML = '';
+                document.getElementById('destWeatherIcon').setAttribute('src', '');
+                document.getElementById('destWeatherTemp').innerHTML = '';
+                return;
+            }
+
             let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
@@ -52,9 +88,16 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
             document.getElementById('destWeatherIcon').setAttribute('alt', currentCondDesc);
             document.getElementById('destWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
-            document.getElementById('destWeatherIcon').setAttribute('src', currentCondIcon);
+
+            if(!currentCondIcon || currentCondIcon === 'NULL')
+            {
+                document.getElementById('destWeatherIcon').setAttribute('src', '');
+            }
+            else
+            {
+                document.getElementById('destWeatherIcon').setAttribute('src', currentCondIcon);
+            }
             document.getElementById('destWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
-            document.getElementById('destWeatherCity').innerHTML = destinationLocation.city + ", " + destinationLocation.state; // + ", " + destinationLocation.country;
         }
     });
     xhrDestinationWeatherStack.open("GET", queryStringDestination);
