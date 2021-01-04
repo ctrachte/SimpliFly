@@ -18,6 +18,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
     xhrSkyScannerRequest.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             // TODO: map data returned to the UI, and handle errors
+            // need loading icon to be rendered while waiting for a response
             console.log(JSON.parse(this.responseText));
         }
     });
