@@ -11,13 +11,23 @@ document.getElementById("findFlights").addEventListener('click', function () {
     }
 });
 
+// hide weather containers on page load
+document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
+document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
+
+
 function setBodyContent()
 {
     let bodyContent = "";
 
     if (FlightDataObj.Quotes.length == 0)
     {
-        document.getElementById("flights-list").innerHTML = "Sorry, no flights could be found for that date."
+        document.getElementById("flights-list").innerHTML =                     
+        `<li class="jumbotron list-group-item">
+            <h1 class="display-4">We didn't find any flights ... </h1>
+            <hr class="my-4">
+            <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
+        </li>`;
     }
     else
     {
