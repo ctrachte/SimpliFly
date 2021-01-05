@@ -18,8 +18,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
             document.getElementById('originWeatherCity').innerHTML = originLocation.city + ", " + originLocation.state; // + ", " + originLocation.country;
 
             //<title>Forecast Error</title><meta name="title" content="Forecast Error" />
-            if(this.responseText.includes("<title>Forecast Error</title>"))
-            {
+            if (this.responseText.includes("<title>Forecast Error</title>")) {
                 //Error with forecast
                 document.getElementById('originWeatherIcon').setAttribute('alt', '');
                 document.getElementById('originWeatherDesc').innerHTML = '';
@@ -28,7 +27,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
                 return;
             }
 
-            let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
+            let xmlDoc = parser.parseFromString(this.responseText, "text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
             let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
@@ -37,12 +36,10 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
             document.getElementById('originWeatherIcon').setAttribute('alt', currentCondDesc);
             document.getElementById('originWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
-            if(!currentCondIcon || currentCondIcon == 'NULL')
-            {
+            if (!currentCondIcon || currentCondIcon == 'NULL') {
                 document.getElementById('originWeatherIcon').setAttribute('src', '');
             }
-            else
-            {
+            else {
                 document.getElementById('originWeatherIcon').setAttribute('src', currentCondIcon);
             }
             document.getElementById('originWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
@@ -69,8 +66,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
             document.getElementById('destWeatherCity').innerHTML = destinationLocation.city + ", " + destinationLocation.state; // + ", " + destinationLocation.country;
 
             //<title>Forecast Error</title><meta name="title" content="Forecast Error" />
-            if(this.responseText.includes("<title>Forecast Error</title>"))
-            {
+            if (this.responseText.includes("<title>Forecast Error</title>")) {
                 //Error with forecast
                 document.getElementById('destWeatherIcon').setAttribute('alt', '');
                 document.getElementById('destWeatherDesc').innerHTML = '';
@@ -79,7 +75,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
                 return;
             }
 
-            let xmlDoc = parser.parseFromString(this.responseText,"text/xml");
+            let xmlDoc = parser.parseFromString(this.responseText, "text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
             let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
@@ -89,15 +85,16 @@ document.getElementById("findFlights").addEventListener('click', function () {
             document.getElementById('destWeatherIcon').setAttribute('alt', currentCondDesc);
             document.getElementById('destWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
 
-            if(!currentCondIcon || currentCondIcon === 'NULL')
-            {
+            if (!currentCondIcon || currentCondIcon === 'NULL') {
                 document.getElementById('destWeatherIcon').setAttribute('src', '');
             }
-            else
-            {
+            else {
                 document.getElementById('destWeatherIcon').setAttribute('src', currentCondIcon);
             }
             document.getElementById('destWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            // hide weather containers on page load
+            document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: block;");
+            document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: block;");
         }
     });
     xhrDestinationWeatherStack.open("GET", queryStringDestination);

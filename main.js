@@ -11,6 +11,11 @@ document.getElementById("findFlights").addEventListener('click', function () {
     }
 });
 
+// hide weather containers on page load
+document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
+document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
+
+
 function setBodyContent()
 {
     let bodyContent = "";
