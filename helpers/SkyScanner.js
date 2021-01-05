@@ -1,3 +1,5 @@
+let FlightDataObj = null;
+
 // we need to formate dates properly for the API, so lets extend the DATE class
 Date.prototype.formatSkyScanner = function(){
     return  this.getFullYear() + "-"
@@ -20,6 +22,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
             // TODO: map data returned to the UI, and handle errors
             // need loading icon to be rendered while waiting for a response
             console.log(JSON.parse(this.responseText));
+            FlightDataObj = JSON.parse(this.responseText);
         }
     });
     xhrSkyScannerRequest.open("GET", "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString);
