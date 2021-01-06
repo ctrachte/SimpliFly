@@ -32,7 +32,7 @@ function setBodyContent()
         document.getElementById("flights-list").innerHTML =                     
         `<li class="jumbotron list-group-item">
             <h1 class="display-4">We didn't find any flights ... ${originData && destinationData ? "from " + originData.city 
-            + " to " + destinationData.city + " on " + (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner() : ""}</h1>
+            + " to " + destinationData.city + " on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</h1>
             <hr class="my-4">
             <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
         </li>`;
