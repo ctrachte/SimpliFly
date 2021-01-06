@@ -19,7 +19,7 @@ document.getElementsByClassName("originWeather")[0].setAttribute('style', "displ
 function setBodyContent()
 {
     let bodyContent = "";
-    if (originData.code === destinationData.code) {
+    if (originData && destinationData && originData.code === destinationData.code) {
         document.getElementById("flights-list").innerHTML =                     
         `<li class="jumbotron list-group-item">
             <h1 class="display-4">Oops! Origin and destination airports can't match!</h1>
