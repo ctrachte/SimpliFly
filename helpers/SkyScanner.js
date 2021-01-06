@@ -9,10 +9,10 @@ Date.prototype.formatSkyScanner = function(){
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
-    getSkyscannerData();
+    getSkyscannerData(originData, destinationData, AirportDataUSA);
 });
 
-function getSkyscannerData () {
+function getSkyscannerData (originData, destinationData, AirportDataUSA) {
     const originAirportCode = (originData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
