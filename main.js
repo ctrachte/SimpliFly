@@ -46,7 +46,7 @@ function setBodyContent()
         {
             bodyContent = bodyContent + 
             `<li class="flight-listing list-group-item d-flex justify-content-between align-items-center row">
-                <div class="departure-data col-5">
+                <div class="departure-data col-4">
                     Departure
                     <br>
                     <div style="font-size: 1.75em">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
@@ -58,9 +58,8 @@ function setBodyContent()
                         <div style="font-size: 1.75em">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
                     </div>
                 </div>
-                <div class="price-data col-2">
-                    Price
-                    <br>
+                <div class="price-data col-3">
+                    <p class="lead mb-0>${FlightDataObj.Carriers[i].Name}</p>
                     <div style="font-size: 1.75em">$${FlightDataObj.Quotes[i].MinPrice}</div>
                 </div>
             </li>`
