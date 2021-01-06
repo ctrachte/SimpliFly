@@ -20,7 +20,7 @@ function setBodyContent()
 {
     let bodyContent = "";
 
-    if (FlightDataObj.Quotes.length == 0)
+    if (FlightDataObj.Quotes.length == 0 || !FlightDataObj)
     {
         document.getElementById("flights-list").innerHTML =                     
         `<li class="jumbotron list-group-item">

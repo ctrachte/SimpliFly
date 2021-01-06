@@ -9,8 +9,8 @@ Date.prototype.formatSkyScanner = function(){
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
-    const originAirportCode = (originData || airportData[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
-    const destAirportCode = (destinationData || airportData[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
+    const originAirportCode = (originData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
+    const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
     // console.log(originAirportCode, destAirportCode, inboundpartialdate);
     const xhrSkyScannerRequest = new XMLHttpRequest();
@@ -21,7 +21,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
         if (this.readyState === this.DONE) {
             // TODO: map data returned to the UI, and handle errors
             // need loading icon to be rendered while waiting for a response
-            console.log(JSON.parse(this.responseText));
+            // console.log(JSON.parse(this.responseText));
             FlightDataObj = JSON.parse(this.responseText);
         }
     });
