@@ -19,12 +19,20 @@ document.getElementsByClassName("originWeather")[0].setAttribute('style', "displ
 function setBodyContent()
 {
     let bodyContent = "";
-
-    if (FlightDataObj.Quotes.length == 0 || !FlightDataObj)
+    if (originData.code === destinationData.code) {
+        document.getElementById("flights-list").innerHTML =                     
+        `<li class="jumbotron list-group-item">
+            <h1 class="display-4">Oops! Origin and destination airports can't match!</h1>
+            <hr class="my-4">
+            <p class="lead">Choose another origin airport city, destination airport city, then click "Find Flights" again!</p>
+        </li>`;
+    }
+    else if (!FlightDataObj || FlightDataObj.Quotes.length == 0)
     {
         document.getElementById("flights-list").innerHTML =                     
         `<li class="jumbotron list-group-item">
-            <h1 class="display-4">We didn't find any flights ... </h1>
+            <h1 class="display-4">We didn't find any flights ... ${originData && destinationData ? "from " + originData.city 
+            + " to " + destinationData.city + " on " + (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner() : ""}</h1>
             <hr class="my-4">
             <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
         </li>`;

@@ -16,6 +16,7 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
     const originAirportCode = (originData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
+    if (originAirportCode === destAirportCode) {return}
     // console.log(originAirportCode, destAirportCode, inboundpartialdate);
     const xhrSkyScannerRequest = new XMLHttpRequest();
     const queryString = "/apiservices/browsedates/v1.0/US/USD/en-US/" + originAirportCode + "/" + destAirportCode + "/" + inboundpartialdate + "?inboundpartialdate=" + inboundpartialdate;
@@ -26,7 +27,12 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
             // TODO: map data returned to the UI, and handle errors
             // need loading icon to be rendered while waiting for a response
             // console.log(JSON.parse(this.responseText));
-            FlightDataObj = JSON.parse(this.responseText);
+            if (xhrSkyScannerRequest.status === 200) {
+                FlightDataObj = JSON.parse(this.responseText);
+            } else {
+                FlightDataObj = null;
+                console.error("SkyScanner API Error " + xhrSkyScannerRequest.status + ": " +  this.statusText + ", " + this.responseText);
+            }
         }
     });
     xhrSkyScannerRequest.open("GET", "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString);
