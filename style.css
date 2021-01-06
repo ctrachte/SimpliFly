@@ -53,3 +53,6 @@ footer {
   --skew-padding: calc(var(--content-width) * var(--number));
 } */
 
+.WeatherIcon {
+  max-height: 35px;
+}
