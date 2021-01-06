@@ -9,6 +9,10 @@ Date.prototype.formatSkyScanner = function(){
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
+    getSkyscannerData();
+});
+
+function getSkyscannerData () {
     const originAirportCode = (originData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
@@ -29,4 +33,4 @@ document.getElementById("findFlights").addEventListener('click', function () {
     xhrSkyScannerRequest.setRequestHeader("x-rapidapi-key", SkyScannerKey);
     xhrSkyScannerRequest.setRequestHeader("x-rapidapi-host", SkyScannerHost);
     xhrSkyScannerRequest.send();
-});
+}
