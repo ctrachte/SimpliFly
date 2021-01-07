@@ -1,4 +1,5 @@
-document.getElementById("findFlights").addEventListener('click', function () {
+document.getElementById("findFlights").addEventListener('click', function () 
+{
     if (FlightDataObj == null)
     {
         setTimeout(function () {
@@ -24,8 +25,9 @@ document.getElementsByClassName("originWeather")[0].setAttribute('style', "displ
 function setBodyContent()
 {
     let bodyContent = "";
+
     if (originData && destinationData && originData.code === destinationData.code) {
-        document.getElementById("flights-list").innerHTML =                     
+        bodyContent =                     
         `<li class="jumbotron list-group-item">
             <h1 class="display-4">Oops! Origin and destination airports can't match!</h1>
             <hr class="my-4">
@@ -34,7 +36,7 @@ function setBodyContent()
     }
     else if (!FlightDataObj || FlightDataObj.Quotes.length == 0)
     {
-        document.getElementById("flights-list").innerHTML =                     
+        bodyContent =                     
         `<li class="jumbotron list-group-item">
             <h1 class="display-4">We didn't find any flights ... ${originData && destinationData ? "from " + originData.city 
             + " to " + destinationData.city + " on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</h1>
@@ -67,8 +69,8 @@ function setBodyContent()
                 </div>
             </li>`
         }
-        document.getElementById("flights-list").innerHTML = bodyContent;
     }
+    document.getElementById("flights-list").innerHTML = bodyContent;
     FlightDataObj = null;
 }
 
@@ -88,5 +90,8 @@ function clearForm()
     document.getElementById('Origin').value = '';
     document.getElementById('Destination').value = '';
     document.getElementById('inbound-partial-date').value = '';
+
+    document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
+    document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
 }
 
