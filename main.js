@@ -1,4 +1,4 @@
-// hide weather containers on page load
+// hide weather containers and reset button on page load
 document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
 document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
 document.getElementById("clearForm").style.display = "none";
@@ -13,7 +13,8 @@ function setBodyContent()
 {
     let bodyContent = "";
 
-    if (originData && destinationData && originData.code === destinationData.code) {
+    if (originData && destinationData && originData.code === destinationData.code) 
+    {
         bodyContent =                     
         `<li class="jumbotron list-group-item">
             <h1 class="">Oops! Origin and destination airports can't match!</h1>
@@ -66,23 +67,22 @@ function setBodyContent()
 function clearForm()
 {
     document.getElementById("flights-list").innerHTML = 
-        `<li class="jumbotron list-group-item">
-            <h1 class="display-4">Welcome to SimpliFly!</h1>
-            <p class="lead">A simple and fast way to find flight and weather information for anywhere in the United States - no extra clicks, account creations, or email subscriptions!</p>
-            <hr class="my-4">
-            <p>To get started, choose an origin airport city, a destination airport city, and a travel date, then click "Find Flights"!</p>
-        </li>`;
+    `<li class="jumbotron list-group-item">
+        <h1 class="display-4">Welcome to SimpliFly!</h1>
+        <p class="lead">A simple and fast way to find flight and weather information for anywhere in the United States - no extra clicks, account creations, or email subscriptions!</p>
+        <hr class="my-4">
+        <p>To get started, choose an origin airport city, a destination airport city, and a travel date, then click "Find Flights"!</p>
+    </li>`;
     
+    originData = undefined;
+    destinationData = undefined;
     FlightDataObj = null;
 
     document.getElementById('Origin').value = '';
     document.getElementById('Destination').value = '';
     document.getElementById('inbound-partial-date').value = '';
-    originData = undefined;
-    destinationData = undefined;
 
     document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
     document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
     document.getElementById("clearForm").style.display = "none";
 }
-
