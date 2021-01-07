@@ -3,6 +3,11 @@ header, footer {
   background-color: #006575;
 }
 
+#clearForm {
+  color: white;
+  background-color: #006575; 
+}
+
 footer {
     display: block;
     font-size: small;
