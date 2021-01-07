@@ -49,23 +49,20 @@ function setBodyContent()
         for (i=0; FlightDataObj.Quotes.length > i; i++) 
         {
             bodyContent = bodyContent + 
-            `<li class="flight-listing list-group-item d-flex justify-content-between align-items-center row">
-                <div class="departure-data col-5">
-                    Departure
-                    <br>
-                    <div class="flight-details">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
+            `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
+                <div class="departure-data py-2 col-4">
+                    <p class="text-center mb-0">Departure</p>
+                    <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
                 </div>
-                <div class="arrival-data col-5">
+                <div class="arrival-data py-2 col-5">
                     <div class="arrival-data-content">
-                        Test Arrival
-                        <br>
-                        <div class="flight-details">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
+                    <p class="text-center mb-0">Arrival</p>
+                    <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
                     </div>
                 </div>
-                <div class="price-data col-2">
-                    Price
-                    <br>
-                    <div class="flight-details">$${FlightDataObj.Quotes[i].MinPrice}</div>
+                <div class="price-data py-2 col-3">
+                    <p class="text-center mb-0">${FlightDataObj.Carriers[i].Name}</p>
+                    <p class="text-center lead mb-0">$${FlightDataObj.Quotes[i].MinPrice}</p>
                 </div>
             </li>`
         }

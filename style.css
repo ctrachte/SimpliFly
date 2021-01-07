@@ -22,9 +22,6 @@ header, footer {
         text-align: center;
         height: 75px;
 }
-.flight-details {
-  font-size: 1.75em;
-}
 
 footer {
     display: block;
