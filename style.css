@@ -3,26 +3,6 @@ header, footer {
   background-color: #006575;
 }
 
-#clearForm {
-  color: white;
-  background-color: #006575;
-}
-
-#flights-list > .flight-listing {
-    margin-bottom: 10px;
-    padding:0px;
-    display: block;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border: solid #006575 2px;
-}
-.flight-listing > div {
-        float: left;
-        color: black;
-        text-align: center;
-        height: 75px;
-}
-
 footer {
     display: block;
     font-size: small;
@@ -40,13 +20,6 @@ footer {
   /* transform: skew(-19deg); */
   background-color:#00675828;
   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.arrival-data-content {
-  /* max-width: 50em;
-  margin: 0 auto; */
-  /* transform: skewX(19deg) */
-
 }
 
 .card {
