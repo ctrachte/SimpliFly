@@ -49,6 +49,10 @@ document.getElementById('Origin').addEventListener("keyup", function (e) {
   OriginHighlights();
 });
 
+document.getElementById('inbound-partial-date').addEventListener("change", function (e) {
+  document.getElementById("clearForm").style.display = "initial";
+});
+  
 function OriginHighlights() {
   let Origin = document.getElementById("OriginList");
 
@@ -64,6 +68,7 @@ function OriginHighlights() {
     originData = AirportDataUSA[e.target.value];
     document.getElementById("Origin").value = originData.city + ", " + originData.state;
     document.querySelector('.OriginLocations').style.display = 'none';
+    document.getElementById("clearForm").style.display = "initial";
   });
 }
 
@@ -82,6 +87,7 @@ function DestinationHighlights() {
     destinationData = AirportDataUSA[e.target.value];
     document.getElementById("Destination").value = destinationData.city + ", " + destinationData.state;
     document.querySelector('.DestinationLocations').style.display = 'none';
+    document.getElementById("clearForm").style.display = "initial";
   });
 }
 
