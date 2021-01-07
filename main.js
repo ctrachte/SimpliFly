@@ -11,11 +11,16 @@ document.getElementById("findFlights").addEventListener('click', function () {
     }
 });
 
+document.getElementById("clearForm").addEventListener('click', function () 
+{
+    clearForm();
+});
+
 // hide weather containers on page load
 document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
 document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
 
-
+// set body content with flight data
 function setBodyContent()
 {
     let bodyContent = "";
@@ -67,6 +72,7 @@ function setBodyContent()
     FlightDataObj = null;
 }
 
+// clears form when 'Reset' btn is clicked
 function clearForm()
 {
     document.getElementById("flights-list").innerHTML = 

@@ -3,6 +3,11 @@ header, footer {
   background-color: #006575;
 }
 
+#clearForm {
+  color: white;
+  background-color: #006575;
+}
+
 #flights-list > .flight-listing {
     margin-bottom: 10px;
     padding:0px;
