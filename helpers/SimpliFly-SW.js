@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/helpers/WeatherSW.js')
+  navigator.serviceWorker.register('/helpers/WeatherSW.js')
     .then((reg) => {
       // registration worked
       console.log('Registration succeeded. Scope is ' + reg.scope);
@@ -7,4 +7,4 @@ if ('serviceWorker' in navigator) {
       // registration failed
       console.log('Registration failed with ' + error);
     });
-  }
+}
