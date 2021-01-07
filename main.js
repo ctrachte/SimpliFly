@@ -67,3 +67,20 @@ function setBodyContent()
     FlightDataObj = null;
 }
 
+function clearForm()
+{
+    document.getElementById("flights-list").innerHTML = 
+        `<li class="jumbotron list-group-item">
+            <h1 class="display-4">Welcome to SimpliFly!</h1>
+            <p class="lead">A simple and fast way to find flight and weather information for anywhere in the United States - no extra clicks, account creations, or email subscriptions!</p>
+            <hr class="my-4">
+            <p>To get started, choose an origin airport city, a destination airport city, and a travel date, then click "Find Flights"!</p>
+        </li>`;
+    
+    FlightDataObj = null;
+
+    document.getElementById('Origin').value = '';
+    document.getElementById('Destination').value = '';
+    document.getElementById('inbound-partial-date').value = '';
+}
+
