@@ -87,6 +87,8 @@ function clearForm()
     document.getElementById('Origin').value = '';
     document.getElementById('Destination').value = '';
     document.getElementById('inbound-partial-date').value = '';
+    originData = undefined;
+    destinationData = undefined;
 
     document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
     document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
