@@ -29,6 +29,7 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
             // console.log(JSON.parse(this.responseText));
             if (xhrSkyScannerRequest.status === 200) {
                 FlightDataObj = JSON.parse(this.responseText);
+                setBodyContent();
             } else {
                 FlightDataObj = null;
                 console.error("SkyScanner API Error " + xhrSkyScannerRequest.status + ": " +  this.statusText + ", " + this.responseText);

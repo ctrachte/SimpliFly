@@ -1,16 +1,3 @@
-document.getElementById("findFlights").addEventListener('click', function () {
-    if (FlightDataObj == null)
-    {
-        setTimeout(function () {
-            setBodyContent();
-        }, 1250);
-    }
-    else
-    { 
-        setBodyContent(); 
-    }
-});
-
 // hide weather containers on page load
 document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
 document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
