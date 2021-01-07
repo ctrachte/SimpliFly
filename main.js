@@ -1,6 +1,7 @@
 // hide weather containers on page load
 document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
 document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
+document.getElementById("clearForm").style.display = "none";
 
 document.getElementById("clearForm").addEventListener('click', function () 
 {
@@ -52,6 +53,7 @@ function setBodyContent()
                 </div>
             </li>`
         }
+        document.getElementById("clearForm").style.display = "initial";
     }
     document.getElementById("flights-list").innerHTML = bodyContent;
     FlightDataObj = null;
@@ -78,5 +80,6 @@ function clearForm()
 
     document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: none;");
     document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
+    document.getElementById("clearForm").style.display = "none";
 }
 
