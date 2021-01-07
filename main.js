@@ -53,19 +53,19 @@ function setBodyContent()
                 <div class="departure-data col-5">
                     Departure
                     <br>
-                    <div style="font-size: 1.75em">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
+                    <div class="flight-details">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
                 </div>
                 <div class="arrival-data col-5">
                     <div class="arrival-data-content">
                         Test Arrival
                         <br>
-                        <div style="font-size: 1.75em">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
+                        <div class="flight-details">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</div>
                     </div>
                 </div>
                 <div class="price-data col-2">
                     Price
                     <br>
-                    <div style="font-size: 1.75em">$${FlightDataObj.Quotes[i].MinPrice}</div>
+                    <div class="flight-details">$${FlightDataObj.Quotes[i].MinPrice}</div>
                 </div>
             </li>`
         }
