@@ -14,6 +14,7 @@ document.getElementById("findFlights").addEventListener('click', function () {
     xhrOriginWeatherStack.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             let parser = new DOMParser();
+            console.log(parser);
 
             document.getElementById('originWeatherCity').innerHTML = originLocation.city + ", " + originLocation.state; // + ", " + originLocation.country;
 
@@ -29,22 +30,46 @@ document.getElementById("findFlights").addEventListener('click', function () {
 
             let xmlDoc = parser.parseFromString(this.responseText, "text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
+            //console.log(currentObservation);
+
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
             let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
             let currentCondIcon = currentObservation.getElementsByTagName('conditions-icon')[0].getElementsByTagName('icon-link')[0].innerHTML;
             let currentCondDesc = currentObservation.getElementsByTagName('weather')[0].getElementsByTagName('weather-conditions')[0].getAttribute('weather-summary');
+            console.log(currentCondDesc);
 
-            document.getElementById('originWeatherIcon').setAttribute('alt', currentCondDesc);
-            document.getElementById('originWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+            //Origin Weather Desc Error handling
+            if (currentCondDesc) {
+                switch (currentCondDesc) {
+                    case "mist,fog":
+                        document.getElementById('originWeatherIcon').setAttribute('alt', "Misty Fog");
+                        document.getElementById('originWeatherDesc').innerHTML = "Currently: Misty Fog";
+                        break;
+                    default:
+                        document.getElementById('originWeatherIcon').setAttribute('alt', currentCondDesc);
+                        document.getElementById('originWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+                        break;
+                }
+            }
+
+            //Origin Weather Icon Error Handling
             if (!currentCondIcon || currentCondIcon == 'NULL') {
-                document.getElementById('originWeatherIcon').setAttribute('src', '');
+                document.getElementById('originWeatherIcon').classList.add('d-none');
             }
             else {
                 document.getElementById('originWeatherIcon').setAttribute('src', currentCondIcon);
             }
-            document.getElementById('originWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            
+            //Origin Temp UI Error Handling
+            if (currentTemp != undefined && (currentTemp != "" && currentTemp != "NULL")) {
+                document.getElementById('originWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            }
+            else {
+                document.getElementById('originWeatherTemp').innerHTML = "";
+            }
         }
     });
+
     xhrOriginWeatherStack.open("GET", queryStringOrigin);
     // xhrOriginWeatherStack.setRequestHeader("access_key", WeatherstackKey);
     xhrOriginWeatherStack.send(data);
@@ -78,20 +103,42 @@ document.getElementById("findFlights").addEventListener('click', function () {
             let xmlDoc = parser.parseFromString(this.responseText, "text/xml");
             let currentObservation = xmlDoc.querySelectorAll('[type="current observations"]')[0];
             currentObservation = currentObservation.getElementsByTagName('parameters')[0];
+            console.log(currentObservation);
+
             let currentTemp = currentObservation.querySelectorAll('[type="apparent"]')[0].getElementsByTagName('value')[0].innerHTML;
             let currentCondIcon = currentObservation.getElementsByTagName('conditions-icon')[0].getElementsByTagName('icon-link')[0].innerHTML;
             let currentCondDesc = currentObservation.getElementsByTagName('weather')[0].getElementsByTagName('weather-conditions')[0].getAttribute('weather-summary');
 
-            document.getElementById('destWeatherIcon').setAttribute('alt', currentCondDesc);
-            document.getElementById('destWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+            //Destination Weather Desc Error handling
+            if (currentCondDesc) {
+                switch (currentCondDesc) {
+                    case "mist,fog":
+                        document.getElementById('destWeatherIcon').setAttribute('alt', "Misty Fog");
+                        document.getElementById('destWeatherDesc').innerHTML = "Currently: Misty Fog";
+                        break;
+                    default:
+                        document.getElementById('destWeatherIcon').setAttribute('alt', currentCondDesc);
+                        document.getElementById('destWeatherDesc').innerHTML = "Currently: " + currentCondDesc;
+                        break;
+                }
+            }
 
+            //Destination Weather Icon Error Handling
             if (!currentCondIcon || currentCondIcon === 'NULL') {
-                document.getElementById('destWeatherIcon').setAttribute('src', '');
+                document.getElementById('destWeatherIcon').classList.add('d-none');
             }
             else {
                 document.getElementById('destWeatherIcon').setAttribute('src', currentCondIcon);
             }
-            document.getElementById('destWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+
+            //Destination Temp UI Error Handling
+            if (currentTemp != undefined && (currentTemp != "" && currentTemp != "NULL")) {
+                document.getElementById('destWeatherTemp').innerHTML = currentTemp + "&#176;" + "F";
+            }
+            else {
+                document.getElementById('destWeatherTemp').innerHTML = "";
+            }
+
             // hide weather containers on page load
             document.getElementsByClassName("destinationWeather")[0].setAttribute('style', "display: block;");
             document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: block;");
