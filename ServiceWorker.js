@@ -14,22 +14,22 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// self.addEventListener('install', (event) => {
-//   event.waitUntil(
-//     caches.open('v1').then((cache) => {
-//       return cache.addAll([
-//         './',
-//         // './helpers/',
-//       ]);
-//     })
-//   );
-// });
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open('v1').then((cache) => {
+      return cache.addAll([
+        './',
+        // './helpers/',
+      ]);
+    })
+  );
+});
 
-// self.addEventListener('fetch', (event) => {
-//   event.respondWith(
-//     caches.match(event.request)
-//   );
-// });
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+  );
+});
 
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(caches.match(event.request).then(function(response) {
