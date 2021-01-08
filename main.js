@@ -83,4 +83,13 @@ function clearForm()
     document.getElementById("clearForm").style.display = "none";
 }
 
+function loading() 
+{
+    let bodyContent = `
+        <div class="mx-auto mt-5">
+            <img src="assets/images/loading.gif" class="img-fluid" alt="loading" style="width: 100px">
+        </div>
+    `;
 
+    document.getElementById("flights-list").innerHTML = bodyContent;
+}
