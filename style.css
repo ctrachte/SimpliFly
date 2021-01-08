@@ -39,3 +39,7 @@ footer {
 .WeatherIcon {
   max-height: 35px;
 }
+
+.originWeather, .destinationWeather {
+  height: 135px !important;
+}
