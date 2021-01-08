@@ -82,3 +82,5 @@ function clearForm()
     document.getElementsByClassName("originWeather")[0].setAttribute('style', "display: none;");
     document.getElementById("clearForm").style.display = "none";
 }
+
+
