@@ -44,7 +44,7 @@ self.addEventListener('fetch', function(event) {
         });
         return response;
       }).catch(function () {
-        console.log("Error: ", response)
+        console.error("Error: ", response)
         return;
       });
     }
