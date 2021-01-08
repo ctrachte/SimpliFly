@@ -42,17 +42,13 @@ function setBodyContent()
             bodyContent = bodyContent + 
             `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
                 <div class="departure-data py-2 col-4">
-                    <p class="text-center mb-0">Departure</p>
-                    <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
+                    <p class="text-center lead mb-0">${FlightDataObj.Carriers[i].Name}</p>
                 </div>
                 <div class="arrival-data py-2 col-5">
-                    <div class="arrival-data-content">
-                    <p class="text-center mb-0">Arrival</p>
                     <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
                     </div>
                 </div>
                 <div class="price-data py-2 col-3">
-                    <p class="text-center mb-0">${FlightDataObj.Carriers[i].Name}</p>
                     <p class="text-center lead mb-0">$${FlightDataObj.Quotes[i].MinPrice}</p>
                 </div>
             </li>`
