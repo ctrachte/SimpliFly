@@ -9,6 +9,7 @@ Date.prototype.formatSkyScanner = function(){
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
+    loading();
     getSkyscannerData(originData, destinationData, AirportDataUSA);
 });
 
@@ -40,4 +41,15 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
     xhrSkyScannerRequest.setRequestHeader("x-rapidapi-key", SkyScannerKey);
     xhrSkyScannerRequest.setRequestHeader("x-rapidapi-host", SkyScannerHost);
     xhrSkyScannerRequest.send();
+}
+
+function loading() 
+{
+    let bodyContent = `
+        <div class="mx-auto mt-5">
+            <img src="assets/images/loading.gif" class="img-fluid" alt="loading" style="width: 100px">
+        </div>
+    `;
+
+    document.getElementById("flights-list").innerHTML = bodyContent;
 }
