@@ -6,7 +6,6 @@ const GetData = (url, withCredentials = false) => {
             request.setRequestHeader("x-rapidapi-key", SkyScannerKey);
             request.setRequestHeader("x-rapidapi-host", SkyScannerHost);
         }
-        request.responseType = 'blob';
         request.withCredentials = withCredentials;
         request.onload = () => {
             if (request.status == 200) {

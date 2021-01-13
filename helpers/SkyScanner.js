@@ -22,13 +22,3 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
     let url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString;
     return GetData(url, true);
 }
-
-function loading() 
-{
-    let bodyContent = `
-        <div class="mx-auto mt-5">
-            <img src="assets/images/loading.gif" class="img-fluid" alt="loading" style="width: 100px">
-        </div>
-    `;
-    document.getElementById("flights-list").innerHTML = bodyContent;
-}
