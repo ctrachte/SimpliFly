@@ -18,7 +18,6 @@ function getSkyscannerData (originData, destinationData, AirportDataUSA) {
     const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code  + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
     if (originAirportCode === destAirportCode) {return}
-    // console.log(originAirportCode, destAirportCode, inboundpartialdate);
     const queryString = "/apiservices/browsedates/v1.0/US/USD/en-US/" + originAirportCode + "/" + destAirportCode + "/" + inboundpartialdate + "?inboundpartialdate=" + inboundpartialdate;
     let url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString;
     return GetData(url, true);
