@@ -9,36 +9,32 @@ document.getElementById("clearForm").addEventListener('click', function () {
 
 // set body content with flight data
 function resolveSkyScanner() {
-    for (i = 0; FlightDataObj.Quotes.length > i; i++) {
-        bodyContent = bodyContent +
-            `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
-                <div class="departure-data py-2 col-4">
-                    <p class="text-center lead mb-0">${FlightDataObj.Carriers[i].Name}</p>
-                </div>
-                <div class="arrival-data py-2 col-5">
-                    <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
+    if (FlightDataObj.Quotes.length > 0) {
+        for (i = 0; FlightDataObj.Quotes.length > i; i++) {
+            bodyContent = bodyContent +
+                `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
+                    <div class="departure-data py-2 col-4">
+                        <p class="text-center lead mb-0">${FlightDataObj.Carriers[i].Name}</p>
                     </div>
-                </div>
-                <div class="price-data py-2 col-3">
-                    <p class="text-center lead mb-0">$${FlightDataObj.Quotes[i].MinPrice}</p>
-                </div>
-            </li>`
+                    <div class="arrival-data py-2 col-5">
+                        <p class="text-center lead mb-0">${FlightDataObj.Dates.OutboundDates[0].PartialDate}</p>
+                        </div>
+                    </div>
+                    <div class="price-data py-2 col-3">
+                        <p class="text-center lead mb-0">$${FlightDataObj.Quotes[i].MinPrice}</p>
+                    </div>
+                </li>`
+        }
+    } else {
+        rejectSkyScanner();
+        return;
     }
     document.getElementById("clearForm").style.display = "initial";
     document.getElementById("flights-list").innerHTML = bodyContent;
 }
 
 function rejectSkyScanner() {
-    bodyContent =
-        `<li class="jumbotron list-group-item p-0">
-        <div class="alert alert-warning mb-0 p-4">
-            <h1 class="display-4">We didn't find any flights...</h1><p class="lead">${originData && destinationData ? "from <strong>" + originData.city
-                    + "</strong> to <strong>" + destinationData.city + "</strong> on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</p>
-        </div>
-            </li>
-        <li class="jumbotron list-group-item">
-            <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
-        </li>`;
+
     document.getElementById("flights-list").innerHTML = bodyContent;
 }
 
