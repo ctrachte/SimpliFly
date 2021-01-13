@@ -1,6 +1,5 @@
 const GetData = (url, withCredentials) => {
     return new Promise((resolve, reject) => {
-        // loading();
         let request = new XMLHttpRequest();
         request.open('GET', url);
         request.setRequestHeader("x-rapidapi-key", SkyScannerKey);
@@ -9,7 +8,6 @@ const GetData = (url, withCredentials) => {
         request.onload = () => {
             if (request.status == 200) {
                 FlightDataObj = JSON.parse(request.response);
-                console.log(FlightDataObj);
                 resolve(FlightDataObj);
             } else {
                 FlightDataObj = null;

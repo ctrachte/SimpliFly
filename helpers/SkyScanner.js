@@ -9,6 +9,7 @@ Date.prototype.formatSkyScanner = function () {
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
+    loading();
     getSkyscannerData(originData, destinationData, AirportDataUSA);
 });
 

@@ -9,10 +9,8 @@ document.getElementById("clearForm").addEventListener('click', function () {
 
 // set body content with flight data
 function resolveSkyScanner(FlightDataObj) {
-    console.log(FlightDataObj)
-    let bodyContent = document.getElementById("flights-list").innerHTML;
     document.getElementById("flights-list").innerHTML = "";
-
+    let bodyContent = document.getElementById("flights-list").innerHTML;
     if (FlightDataObj.Quotes.length > 0) {
         for (i = 0; FlightDataObj.Quotes.length > i; i++) {
             bodyContent +=
