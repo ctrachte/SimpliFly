@@ -34,7 +34,6 @@ function resolveSkyScanner() {
 }
 
 function rejectSkyScanner() {
-
     document.getElementById("flights-list").innerHTML = bodyContent;
 }
 

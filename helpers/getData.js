@@ -10,6 +10,7 @@ const GetData = (url, withCredentials = false) => {
         request.onload = () => {
             if (request.status == 200) {
                 if (withCredentials) {
+                    consonle.log(FlightDataObj)
                     FlightDataObj = JSON.parse(this.responseText);
                 }
                 resolve(request.response);
