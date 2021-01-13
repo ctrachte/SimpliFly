@@ -36,7 +36,16 @@ function resolveSkyScanner(FlightDataObj) {
 }
 
 function rejectSkyScanner() {
-    document.getElementById("flights-list").innerHTML = bodyContent;
+    document.getElementById("flights-list").innerHTML =
+        `<li class="jumbotron list-group-item p-0">
+        <div class="alert alert-warning mb-0 p-4">
+            <h1 class="display-4">We didn't find any flights...</h1><p class="lead">${originData && destinationData ? "from <strong>" + originData.city
+                + "</strong> to <strong>" + destinationData.city + "</strong> on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</p>
+        </div>
+            </li>
+        <li class="jumbotron list-group-item">
+            <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
+        </li>`;
 }
 
 // clears form when 'Reset' btn is clicked
