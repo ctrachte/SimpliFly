@@ -17,8 +17,17 @@ function getSkyscannerData(originData, destinationData, AirportDataUSA) {
     const originAirportCode = (originData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const destAirportCode = (destinationData || AirportDataUSA[Math.floor(Math.random() * Math.floor(300))]).code + "-sky";
     const inboundpartialdate = (document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner(); // modify this later to be more specific to the HTML element.
-    if (originAirportCode === destAirportCode) { return }
+    if (originData && destinationData && originData.code === destinationData.code) {
+        bodyContent =
+            `<li class="jumbotron list-group-item">
+                <h1 class="">Oops! Origin and destination airports can't match!</h1>
+                <hr class="my-4">
+                <p class="lead">Choose another origin airport city, destination airport city, then click "Find Flights" again!</p>
+            </li>`;
+        document.getElementById("flights-list").innerHTML = bodyContent;
+        return;
+    }
     const queryString = "/apiservices/browsedates/v1.0/US/USD/en-US/" + originAirportCode + "/" + destAirportCode + "/" + inboundpartialdate + "?inboundpartialdate=" + inboundpartialdate;
     let url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString;
-    GetData(url, true).then(setBodyContent());
+    GetData(url, true).then(resolveSkyScanner(), rejectSkyScanner());
 }

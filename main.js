@@ -8,33 +8,10 @@ document.getElementById("clearForm").addEventListener('click', function () {
 });
 
 // set body content with flight data
-function setBodyContent() {
-    let bodyContent = "";
-
-    if (originData && destinationData && originData.code === destinationData.code) {
-        bodyContent =
-            `<li class="jumbotron list-group-item">
-            <h1 class="">Oops! Origin and destination airports can't match!</h1>
-            <hr class="my-4">
-            <p class="lead">Choose another origin airport city, destination airport city, then click "Find Flights" again!</p>
-        </li>`;
-    }
-    else if (!FlightDataObj || FlightDataObj.Quotes.length == 0) {
-        bodyContent =
-            `<li class="jumbotron list-group-item p-0">
-        <div class="alert alert-warning mb-0 p-4">
-            <h1 class="display-4">We didn't find any flights...</h1><p class="lead">${originData && destinationData ? "from <strong>" + originData.city
-                + "</strong> to <strong>" + destinationData.city + "</strong> on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</p>
-        </div>
-            </li>
-        <li class="jumbotron list-group-item">
-            <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
-        </li>`;
-    }
-    else {
-        for (i = 0; FlightDataObj.Quotes.length > i; i++) {
-            bodyContent = bodyContent +
-                `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
+function resolveSkyScanner() {
+    for (i = 0; FlightDataObj.Quotes.length > i; i++) {
+        bodyContent = bodyContent +
+            `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
                 <div class="departure-data py-2 col-4">
                     <p class="text-center lead mb-0">${FlightDataObj.Carriers[i].Name}</p>
                 </div>
@@ -46,11 +23,23 @@ function setBodyContent() {
                     <p class="text-center lead mb-0">$${FlightDataObj.Quotes[i].MinPrice}</p>
                 </div>
             </li>`
-        }
-        document.getElementById("clearForm").style.display = "initial";
     }
+    document.getElementById("clearForm").style.display = "initial";
     document.getElementById("flights-list").innerHTML = bodyContent;
-    FlightDataObj = null;
+}
+
+function rejectSkyScanner() {
+    bodyContent =
+        `<li class="jumbotron list-group-item p-0">
+        <div class="alert alert-warning mb-0 p-4">
+            <h1 class="display-4">We didn't find any flights...</h1><p class="lead">${originData && destinationData ? "from <strong>" + originData.city
+                    + "</strong> to <strong>" + destinationData.city + "</strong> on " + ((document.getElementById('inbound-partial-date').value) || new Date().formatSkyScanner()) : ""}</p>
+        </div>
+            </li>
+        <li class="jumbotron list-group-item">
+            <p class="lead">Choose another origin airport city, destination airport city, or travel date, then click "Find Flights" again!</p>
+        </li>`;
+    document.getElementById("flights-list").innerHTML = bodyContent;
 }
 
 // clears form when 'Reset' btn is clicked
