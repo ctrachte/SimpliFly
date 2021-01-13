@@ -8,10 +8,14 @@ document.getElementById("clearForm").addEventListener('click', function () {
 });
 
 // set body content with flight data
-function resolveSkyScanner() {
+function resolveSkyScanner(FlightDataObj) {
+    console.log(FlightDataObj)
+    let bodyContent = document.getElementById("flights-list").innerHTML;
+    document.getElementById("flights-list").innerHTML = "";
+
     if (FlightDataObj.Quotes.length > 0) {
         for (i = 0; FlightDataObj.Quotes.length > i; i++) {
-            bodyContent = bodyContent +
+            bodyContent +=
                 `<li class="justify-content-between list-group-item p-0 mb-1 d-flex align-items-center row">
                     <div class="departure-data py-2 col-4">
                         <p class="text-center lead mb-0">${FlightDataObj.Carriers[i].Name}</p>

@@ -1,19 +1,16 @@
-const GetData = (url, withCredentials = false) => {
+const GetData = (url, withCredentials) => {
     return new Promise((resolve, reject) => {
+        // loading();
         let request = new XMLHttpRequest();
         request.open('GET', url);
-        if (withCredentials) {
-            request.setRequestHeader("x-rapidapi-key", SkyScannerKey);
-            request.setRequestHeader("x-rapidapi-host", SkyScannerHost);
-        }
+        request.setRequestHeader("x-rapidapi-key", SkyScannerKey);
+        request.setRequestHeader("x-rapidapi-host", SkyScannerHost);
         request.withCredentials = withCredentials;
         request.onload = () => {
             if (request.status == 200) {
-                if (withCredentials) {
-                    consonle.log(FlightDataObj)
-                    FlightDataObj = JSON.parse(this.responseText);
-                }
-                resolve(request.response);
+                FlightDataObj = JSON.parse(request.response);
+                console.log(FlightDataObj);
+                resolve(FlightDataObj);
             } else {
                 FlightDataObj = null;
                 reject(Error('The Data Source or API didn\'t respond successfully; error code:' + request.statusText));

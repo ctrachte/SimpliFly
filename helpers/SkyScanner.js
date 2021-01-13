@@ -9,7 +9,6 @@ Date.prototype.formatSkyScanner = function () {
 
 // triggers calls to SkyScanner API on click of 'submit' button
 document.getElementById("findFlights").addEventListener('click', function () {
-    loading();
     getSkyscannerData(originData, destinationData, AirportDataUSA);
 });
 
@@ -29,5 +28,5 @@ function getSkyscannerData(originData, destinationData, AirportDataUSA) {
     }
     const queryString = "/apiservices/browsedates/v1.0/US/USD/en-US/" + originAirportCode + "/" + destAirportCode + "/" + inboundpartialdate + "?inboundpartialdate=" + inboundpartialdate;
     let url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" + queryString;
-    GetData(url, true).then(resolveSkyScanner(), rejectSkyScanner());
+    GetData(url, true).then((result) => resolveSkyScanner(result), (result) => rejectSkyScanner(result));
 }
