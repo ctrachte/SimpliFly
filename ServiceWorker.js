@@ -1,15 +1,15 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./ServiceWorker.js').then(function(reg) {
-    if(reg.installing) {
+  navigator.serviceWorker.register('./ServiceWorker.js').then(function (reg) {
+    if (reg.installing) {
       console.log('Service worker installing');
-    } 
-    if(reg.waiting) {
+    }
+    if (reg.waiting) {
       console.log('Service worker installed');
-    } 
-    if(reg.active) {
+    }
+    if (reg.active) {
       console.log('Service worker active');
     }
-  }).catch(function(error) {
+  }).catch(function (error) {
     // registration failed
     console.log('Service worker registration failed with ' + error);
   });
@@ -25,9 +25,9 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   // console.log('fetch event:', event)
-  event.respondWith(caches.match(event.request).then(function(response) {
+  event.respondWith(caches.match(event.request).then(function (response) {
     // caches.match() always resolves
     // but in case of success response will have value
     if (response !== undefined) {
@@ -44,7 +44,7 @@ self.addEventListener('fetch', function(event) {
         });
         return response;
       }).catch(function () {
-        console.error("Error: ", response)
+        console.error("Error: ", response);
         return;
       });
     }
