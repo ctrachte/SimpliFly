@@ -7,7 +7,7 @@
     <title>Flights</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -24,7 +24,8 @@
                             <div class="row">
                                 <div class="col">
                                     <h4 id="originWeatherTemp" class="float-left">55°</h4>
-                                    <img id="originWeatherIcon" src="assets/images/sunny.png" alt="sunny" class="WeatherIcon rounded-circle border border-warning img-fluid ml-4">
+                                    <img id="originWeatherIcon" src="assets/images/sunny.png" alt="sunny"
+                                        class="WeatherIcon rounded-circle border border-warning img-fluid ml-4">
                                 </div>
                             </div>
                 </div>
@@ -34,7 +35,8 @@
                         <h5 id="destWeatherCity" class="city">Albuquerque, NM</h4>
                             <p id="destWeatherDesc">Currently:</p>
                             <h4 id="destWeatherTemp" class="float-left">36°</h4>
-                            <img id="destWeatherIcon" src="assets/images/tstorm.png" alt="thunderstorms" class="WeatherIcon img-fluid rounded-circle border border-warning ml-4">
+                            <img id="destWeatherIcon" src="assets/images/tstorm.png" alt="thunderstorms"
+                                class="WeatherIcon img-fluid rounded-circle border border-warning ml-4">
                 </div>
 
                 <div class="col-2">
@@ -48,33 +50,33 @@
                 <div class="d-none">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="CountrySelector">Country</label>
+                            <label class="input-group-text" for="CountrySelector">Country</label>
                         </div>
                         <select class="custom-select" id="CountrySelector">
-                          <option value="USA" selected>United States</option>
+                            <option value="USA" selected>United States</option>
                         </select>
-                      </div>
+                    </div>
 
                 </div>
                 <div class="d-none">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="CurrencySelector">Currency</label>
+                            <label class="input-group-text" for="CurrencySelector">Currency</label>
                         </div>
                         <select class="custom-select" id="CurrencySelector">
-                          <!-- <option disabled selected>Choose...</option> -->
-                          <option value="USD" selected>USD($)</option>
+                            <!-- <option disabled selected>Choose...</option> -->
+                            <option value="USD" selected>USD($)</option>
                         </select>
-                      </div>
+                    </div>
 
                 </div>
                 <div class="d-none">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="Locale">Locale</label>
+                            <label class="input-group-text" for="Locale">Locale</label>
                         </div>
                         <select class="custom-select" id="Locale">
-                          <option value="en-US" selected>English</option>
+                            <option value="en-US" selected>English</option>
                         </select>
                     </div>
 
@@ -82,11 +84,13 @@
                 <div class="">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">Origin</span>
+                            <span class="input-group-text">Origin</span>
                         </div>
-                        <input id="Origin" type="text" class="form-control custom-select" placeholder="" aria-label="Origin" aria-describedby="basic-addon1">
+                        <input id="Origin" type="text" class="form-control custom-select" placeholder=""
+                            aria-label="Origin" aria-describedby="basic-addon1">
                         <div class="OriginLocations" style="position: relative; display:none">
-                            <div class="card" id="filter-records-origin" style="position:absolute; width: 18rem; z-index: 999999;" ></div>
+                            <div class="card" id="filter-records-origin"
+                                style="position:absolute; width: 18rem; z-index: 999999;"></div>
                         </div>
                     </div>
 
@@ -94,22 +98,25 @@
                 <div class="">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text">Destination</label>
+                            <label class="input-group-text">Destination</label>
                         </div>
-                        <input id="Destination" type="text" class="form-control custom-select" placeholder="" aria-label="Destination" aria-describedby="basic-addon1">
+                        <input id="Destination" type="text" class="form-control custom-select" placeholder=""
+                            aria-label="Destination" aria-describedby="basic-addon1">
                         <div class="DestinationLocations" style="position: relative; display:none">
-                            <div class="card" id="filter-records-destination" style="position:absolute; width: 18rem; z-index: 999999;" ></div>
+                            <div class="card" id="filter-records-destination"
+                                style="position:absolute; width: 18rem; z-index: 999999;"></div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="">
-                            <input class="custom-select form-control" id="inbound-partial-date" type="date"/>
+                        <input class="custom-select form-control" id="inbound-partial-date" type="date" />
                     </div>
                 </div>
                 <div class="">
                     <button id="clearForm" type="button" class="btn btn-lg col-5 float-left">Reset</button>
-                    <button id="findFlights" type="button" class="btn btn-lg btn-warning col-5 float-right">Find Flights</button>
+                    <button id="findFlights" type="button" class="btn btn-lg btn-warning col-5 float-right">Find
+                        Flights</button>
                 </div>
             </div>
 
@@ -117,9 +124,11 @@
                 <ul class="flights-list list-group" id="flights-list">
                     <li class="jumbotron list-group-item">
                         <h1 class="display-4">Welcome to SimpliFly!</h1>
-                        <p class="lead">A simple and fast way to find flight and weather information for anywhere in the United States - no extra clicks, account creations, or email subscriptions!</p>
+                        <p class="lead">A simple and fast way to find flight and weather information for anywhere in the
+                            United States - no extra clicks, account creations, or email subscriptions!</p>
                         <hr class="my-4">
-                        <p class="lead">To get started, choose an origin airport city, a destination airport city, and a travel date, then click "Find Flights"!</p>
+                        <p class="lead">To get started, choose an origin airport city, a destination airport city, and a
+                            travel date, then click "Find Flights"!</p>
                     </li>
                     <!-- saving this as a template for later:
                         <li class="flight-listing list-group-item d-flex justify-content-between align-items-center row">
@@ -134,7 +143,8 @@
         </div>
 
         <br>
-        <footer class="footer row"><small>Copyright 2020 C.Trachte, A.Declue, B.Scritchfield, J.Johnson, T.Reinhold</small></footer>
+        <footer class="footer row"><small>Copyright 2020 C.Trachte, A.Declue, B.Scritchfield, J.Johnson,
+                T.Reinhold</small></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -151,5 +161,7 @@
 <script src="helpers/WeatherStack.js"></script>
 <script src="helpers/jsonDataSearch.js"></script>
 <script src="helpers/SkyScanner.js"></script>
+<script src="helpers/getData.js"></script>
 <script src="ServiceWorker.js"></script>
+
 </html>
